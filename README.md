@@ -1,0 +1,1 @@
+# alfresco72-search-transform-enterprise-dist-setup

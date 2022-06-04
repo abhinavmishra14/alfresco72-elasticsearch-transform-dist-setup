@@ -1,0 +1,1 @@
+#This folder for shared file store used by alfresco and transformation service

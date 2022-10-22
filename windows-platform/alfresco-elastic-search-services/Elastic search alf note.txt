@@ -2,8 +2,11 @@ Property to be set to control indexing behavior via mediation-filter:
 
 alfresco.mediation.filter-file	=> The configuration file which contains fields and node types blacklists. The default value is classpath:mediation-filter.yml
 
-Within the Elasticsearch connector there is a subset of components that index data. A component called Mediation subscribes to the channel indicated by the alfresco.event.topic attribute, as seen in the table above, and processes the incoming node events. The configuration of that component allows you to declare three blacklist sets for filtering out nodes or attributes to be indexed. These blacklists can be specified in the file using the alfresco.mediation.filter-file attribute, as seen in the table above. The default file is called mediation-filter.yml that must be in the module classpath, see the sample content of that file:
+Within the Elasticsearch connector there is a subset of components that work on indexing data. There is a component called Mediation subscribes to the channel indicated by the alfresco.event.topic attribute, and processes the incoming node events. The configuration of that component allows you to declare four blacklist sets for filtering out nodes or attributes to be indexed. These blacklists can be specified in the file using the alfresco.mediation.filter-file attribute. The default file is called mediation-filter.yml that must be in the module classpath.
 
+Note: Default mediation-filter config resides in 'alfresco-elasticsearch-live-indexing-shared-xxx.jar' which is a dependency of alfresco-elasticsearch-live-indexing-xxx-app.
+
+See the sample content of that file:
 
 mediation:
   nodeTypes:
@@ -31,15 +34,15 @@ mediation:
     - pub:publishingEventPayload
 
 
-
 Where:
 
 nodeTypes: if the node wrapped in the incoming event has a type which is included in this set, the node processing is skipped.
-contentNodeTypes: if the node wrapped in the incoming event has a content change associated with it and it has a type which is included in this set, then the corresponding content processing won’t be executed. This means nodes belonging to one of the node types in this set, won’t have any content indexed in Elasticsearch.
-nodeAspects: if the node wrapped in the incoming event has an aspect which is included in this set, the node processing is skipped.
-fields: fields listed in this set are removed from the incoming nodes metadata. This means fields in this set won’t be sent to Elasticsearch for indexing, and therefore they won’t be searchable.
 
-Default mediation-filter config resides in 'alfresco-elasticsearch-live-indexing-shared-xxx.jar' which is a dependency of alfresco-elasticsearch-live-indexing-xxx-app.
+contentNodeTypes: if the node wrapped in the incoming event has a content change associated with it and it has a type which is included in this set, then the corresponding content processing won’t be executed. This means nodes belonging to one of the node types in this set, won’t have any content indexed in Elasticsearch.
+
+nodeAspects: if the node wrapped in the incoming event has an aspect which is included in this set, the node processing is skipped.
+
+fields: fields listed in this set are removed from the incoming nodes metadata. This means fields in this set won’t be sent to Elasticsearch for indexing, and therefore they won’t be searchable.
 
 
 mediation filter can be provided via either of the following:

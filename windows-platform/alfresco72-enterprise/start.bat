@@ -115,7 +115,8 @@ SET ELASTIC_INSTALL_PATH=%4
 		--spring.elasticsearch.rest.uris=http://localhost:9200 ^
 		--alfresco.sharedFileStore.baseUrl=http://localhost:8099/alfresco/api/-default-/private/sfs/versions/1/file/ ^
 		--alfresco.acceptedContentMediaTypesCache.baseurl=http://localhost:8090/transform/config ^
-		--elasticsearch.indexName=alfresco
+		--elasticsearch.indexName=alfresco ^
+		--alfresco.mediation.filter-file=file:%ALF_SE_INSTALL_PATH%\\mediation-filter.yml
 		
 	timeout 60	
 	if errorlevel 1 (goto end) else (goto startElasticReindexingApp)

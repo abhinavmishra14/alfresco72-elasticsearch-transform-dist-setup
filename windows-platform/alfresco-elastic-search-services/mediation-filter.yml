@@ -1,8 +1,7 @@
 mediation:
   nodeTypes:
   contentNodeTypes:
-  nodeAspects:
-    - sys:hidden
+    - cm:content
   fields:
     - cmis:changeToken
     - alfcmis:nodeRef

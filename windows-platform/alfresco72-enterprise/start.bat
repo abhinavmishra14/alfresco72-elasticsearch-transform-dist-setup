@@ -73,6 +73,8 @@ SET ELASTIC_INSTALL_PATH=%4
 	
 	start "sfsController" java -DfileStorePath=%ALF_INSTALL_PATH%\shared-file-store ^
 		  -Dscheduler.contract.path=%ALF_INSTALL_PATH%\shared-file-store-scheduler-location\scheduler.json ^
+		  -Dscheduler.content.age.millis=86400000 ^
+		  -Dscheduler.cleanup.interval=86400000 ^
 		  -jar %ALF_INSTALL_PATH%\bin\alfresco-shared-file-store-controller-1.5.3.jar
 		  
 	timeout 10
